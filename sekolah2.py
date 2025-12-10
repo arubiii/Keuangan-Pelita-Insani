@@ -659,15 +659,19 @@ def generate_kelas_pdf_report(df_riwayat):
 
 # ===================== LOGIN MANUAL (Menggunakan Secrets) =====================
 
-# Ambil kredensial dari secrets.toml
+# Coba ambil dari secrets.toml dulu, jika tidak ada gunakan default
 try:
     USER_CREDENTIALS = st.secrets["credentials"]
-except KeyError:
-    st.error("Konfigurasi Error: File .streamlit/secrets.toml tidak ditemukan atau kredensial kosong.")
-    st.stop()
-except Exception as e:
-    st.error(f"Terjadi kesalahan saat memuat secrets: {e}")
-    USER_CREDENTIALS = {}
+    st.success("✅ Menggunakan kredensial dari secrets.toml")
+except:
+    # Fallback untuk development atau jika secrets.toml tidak ada
+    USER_CREDENTIALS = {
+        "developer_keuangan": "pass123",
+        "admin1": "admin1",
+        "admin2": "admin2", 
+        "admin3": "admin3"
+    }
+    st.warning("⚠️ Menggunakan kredensial default. Untuk produksi, pastikan file .streamlit/secrets.toml ada di repository.")
 
 # Initialize session state
 if "logged_in" not in st.session_state:
