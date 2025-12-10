@@ -21,10 +21,7 @@ st.set_page_config(
 )
 
 # ==================== KONFIGURASI STYLING FULL SCREEN ====================
-# DISABLE DULU UNTUK DEBUG
-# st.markdown("""<style> ... </style>""", unsafe_allow_html=True)
-# st.markdown("""<script> ... </script>""", unsafe_allow_html=True)
-# st.markdown("""
+st.markdown("""
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
 
@@ -387,7 +384,6 @@ input, select, textarea {
 .stSelectbox > div > div > div {
     color: #64748b !important;
 }
-
 </style>
 """, unsafe_allow_html=True)
 
@@ -675,10 +671,6 @@ except:
         "admin3": "admin3"
     }
     st.warning("⚠️ Menggunakan kredensial default. File secrets.toml tidak ditemukan.")
-
-# HAPUS error message lama
-# st.error("Konfigurasi Error: File .streamlit/secrets.toml tidak ditemukan...")
-# st.stop()  # JANGAN stop aplikasi!
 
 # Initialize session state
 if "logged_in" not in st.session_state:
