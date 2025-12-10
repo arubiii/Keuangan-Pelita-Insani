@@ -657,21 +657,23 @@ def generate_kelas_pdf_report(df_riwayat):
     buffer.seek(0)
     return buffer
 
-# ===================== LOGIN MANUAL (Menggunakan Secrets) =====================
+# ===================== LOGIN MANUAL =====================
+import os
 
-# Coba ambil dari secrets.toml dulu, jika tidak ada gunakan default
+# Debug: Cek apakah file secrets.toml ada
 try:
+    # Coba baca dari secrets
     USER_CREDENTIALS = st.secrets["credentials"]
-    st.success("✅ Menggunakan kredensial dari secrets.toml")
-except:
-    # Fallback untuk development atau jika secrets.toml tidak ada
+    st.success("✅ secrets.toml DITEMUKAN!")
+except Exception as e:
+    # Fallback
     USER_CREDENTIALS = {
         "developer_keuangan": "pass123",
         "admin1": "admin1",
         "admin2": "admin2", 
         "admin3": "admin3"
     }
-    st.warning("⚠️ Menggunakan kredensial default. Untuk produksi, pastikan file .streamlit/secrets.toml ada di repository.")
+    st.warning(f"⚠️ Gunakan fallback. Error: {str(e)}")
 
 # Initialize session state
 if "logged_in" not in st.session_state:
