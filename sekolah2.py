@@ -21,6 +21,9 @@ st.set_page_config(
 )
 
 # ==================== KONFIGURASI STYLING FULL SCREEN ====================
+# DISABLE DULU UNTUK DEBUG
+# st.markdown("""<style> ... </style>""", unsafe_allow_html=True)
+# st.markdown("""<script> ... </script>""", unsafe_allow_html=True)
 st.markdown("""
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
